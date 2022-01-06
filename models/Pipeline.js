@@ -15,6 +15,13 @@ Pipeline.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        task_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'task',
+                key: 'id'
+            }
+        }
     },
     {
         sequelize,
