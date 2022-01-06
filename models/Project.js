@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Project modole
+// Project model
 class Project extends Model {}
 
 Project.init(
