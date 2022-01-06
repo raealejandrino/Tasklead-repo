@@ -11,27 +11,23 @@ TaskTag.init(
             primaryKey: true,
             autoIncrement: true
         },
+        task_tag_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         task_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'task',
                 key: 'id'
             }
-        },
-        tag_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'tag',
-                key: 'id'
-            }
         }
     },
     {
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'task_tag',
+        modelName: 'task_tag'
     }
 );
 

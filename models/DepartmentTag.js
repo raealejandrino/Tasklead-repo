@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Tag extends Model {}
+class DepartmentTag extends Model {}
 
-Tag.init(
+DepartmentTag.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,17 +11,25 @@ Tag.init(
             primaryKey: true,
             autoIncrement: true
         },
-        tag_name: {
+        department_tag_name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+        },
+        project_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'project',
+                key: 'id'
+            }
         }
     },
     {
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'tag'
+        modelName: 'department_tag',
     }
 );
 
-module.exports = Tag;
+module.exports = DepartmentTag;
