@@ -29,12 +29,7 @@ Task.init(
         key: 'id'
       }
     },
-    pipeline_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'pipeline'
-        }
-      },
+
     project_id: {
       type: DataTypes.INTEGER,
       references: {
