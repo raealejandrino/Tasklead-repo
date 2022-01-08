@@ -25,13 +25,8 @@ router.get('/:name', withAuth, (req, res) => {
                 include: [
                     {
                         model: Comment,
-                        attributes: ['id', 'comment_text', 'user_id', 'task_id'],
-                        // include: [
-                        //     {
-                        //         model: User,
-                        //         attributes: ['username']
-                        //     }
-                        // ]
+                        attributes: ['id', 'task_id'],
+                        
                     },
                     {
                         model: TaskTag,
