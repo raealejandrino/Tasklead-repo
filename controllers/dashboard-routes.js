@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Project, DepartmentTag, User, Task } = require('../models');
+const { Project, DepartmentTag, User, Task, TaskTag } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
@@ -38,3 +38,4 @@ router.get('/', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
+
