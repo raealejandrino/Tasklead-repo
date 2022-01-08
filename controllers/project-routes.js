@@ -49,4 +49,12 @@ router.get('/:name', withAuth, (req, res) => {
             }
         ]
     })
-})
+});
+
+router.get('/:name/new-task', withAuth, (req, res) => {
+
+    res.render('new-task');
+    
+});
+
+
