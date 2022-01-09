@@ -32,11 +32,15 @@ Comment.belongsTo(Task, {
 });
 
 Task.belongsToMany(User, {
+    through: Task,
+    as: 'user_tasks',
     foreignKey: 'task_id',
     onDelete: 'CASCADE'
 });
 
 Project.belongsToMany(User, {
+    through: Project,
+    as: 'user_project',
     foreignKey: 'project_id',
     onDelete:'CASCADE'
 });
@@ -66,18 +70,23 @@ Task.hasMany(Comment, {
     onDelete: 'CASCADE'
 });
 
-DepartmentTag.belongsToMany(Project, {
+DepartmentTag.belongsTo(Project, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE'
 });
 
-TaskTag.belongsToMany(Task, {
+TaskTag.belongsTo(Task, {
     foreignKey: 'task_id',
     onDelete: 'CASCADE'
 });
 
 Pipeline.belongsTo(Project, {
     foreignKey: 'project_id',
+    onDelete: 'CASCADE'
+});
+
+Pipeline.hasMany(Task, {
+    foreignKey: 'pipeline_id',
     onDelete: 'CASCADE'
 });
 

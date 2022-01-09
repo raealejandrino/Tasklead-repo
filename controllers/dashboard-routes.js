@@ -28,9 +28,11 @@ router.get('/', withAuth, (req, res) => {
     })
     .then(dbProjectData => {
 
-        const projects = dbProjectData.map(project => project.get({ plain: true }));
+        // const projects = dbProjectData.map(project => project.get({ plain: true }));
 
-        res.render('homepage', { projects });
+        // res.render('homepage', { projects });
+
+        res.json(dbProjectData);
 
     })
     .catch(err => {
@@ -45,3 +47,4 @@ router.get('/new', withAuth, (req, res) => {
     
 });
 
+module.exports = router;
