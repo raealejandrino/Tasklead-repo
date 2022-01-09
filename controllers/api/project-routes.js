@@ -52,7 +52,8 @@ router.get('/:id', (req, res) => {
 router.post('/',withAuth, (req, res) => {
     Project.create({
       title: req.body.title,
-      user_id: req.session.user_id
+      // user_id: req.session.user_id
+      user_id: req.body.user_id
     })
     .then(dbProjectData => res.json(dbProjectData))
     .catch(err => {

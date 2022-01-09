@@ -33,14 +33,24 @@ Comment.belongsTo(Task, {
 
 Task.belongsToMany(User, {
     through: Task,
-    as: 'user_tasks',
+    as: 'users',
     foreignKey: 'task_id',
+    onDelete: 'CASCADE'
+});
+
+Project.hasMany(Task, {
+    foreignKey: 'project_id',
+    onDelete: 'CASCADE'
+});
+
+Task.belongsTo(Project, {
+    foreignKey: 'project_id',
     onDelete: 'CASCADE'
 });
 
 Project.belongsToMany(User, {
     through: Project,
-    as: 'user_project',
+    as: 'user',
     foreignKey: 'project_id',
     onDelete:'CASCADE'
 });
@@ -49,6 +59,18 @@ Project.hasMany(Pipeline, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE'
 });
+
+Pipeline.hasMany(Task, {
+    foreignKey: 'pipeline_id',
+    onDelete: 'CASCADE'
+});
+
+
+Pipeline.belongsTo(Project, {
+    foreignKey: 'project_id',
+    onDelete: 'CASCADE'
+});
+
 
 Task.belongsTo(Pipeline, {
     foreignKey: 'pipeline_id',
@@ -80,15 +102,7 @@ TaskTag.belongsTo(Task, {
     onDelete: 'CASCADE'
 });
 
-Pipeline.belongsTo(Project, {
-    foreignKey: 'project_id',
-    onDelete: 'CASCADE'
-});
 
-Pipeline.hasMany(Task, {
-    foreignKey: 'pipeline_id',
-    onDelete: 'CASCADE'
-});
 
 
 module.exports = { User, Comment, DepartmentTag, Pipeline, Project, Task, TaskTag };
