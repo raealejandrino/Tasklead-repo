@@ -83,3 +83,4 @@ Pipeline.belongsTo(Project, {
 
 
 module.exports = { User, Comment, DepartmentTag, Pipeline, Project, Task, TaskTag };
+
