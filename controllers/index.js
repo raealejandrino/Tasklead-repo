@@ -8,7 +8,7 @@ const projectRoutes = require('./project-routes.js');
 router.use('/api', apiRoutes);
 router.use('/', loginRoute);
 router.use('/dashboard', dashboardRoutes);
-router.use('/', projectRoutes);
+router.use('/projects', projectRoutes);
 
 
 router.use((req, res) => {

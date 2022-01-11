@@ -25,11 +25,17 @@
 
 
         {{#each projects as |project|}}
-        <div class="row projectRow d-flex flex-column mx-auto">
-            {{> project-main-info project}}
-        </div>
+ 
+        <article class="projectRowHoverlink">
+            <div class="row projectRow d-flex flex-column mx-auto my-3">
+                {{> project-main-info project}}
+            </div>
+        </article>
+   
         {{/each}}
     
     </div>
+
+    <script src="/javascript/homepage-logic.js"></script>
 </body>
 </html>
