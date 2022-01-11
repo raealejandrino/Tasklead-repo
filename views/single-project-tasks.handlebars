@@ -1,0 +1,15 @@
+<div class="container">
+    
+        <div class="row justify-content-center">
+            
+
+            {{#each project.tasks as |task|}}
+            
+                {{> task-list-info task}}
+            
+            {{/each}}
+            
+        </div>
+
+    
+</div>

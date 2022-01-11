@@ -1,0 +1,16 @@
+<div class="container">
+    {{#each project.tasks as |task|}}
+        <div class="row">
+           <h3>
+               {{task.title}}
+           </h3>
+        </div>
+
+        <div class="row">
+            <p>
+                {{task.task_text}}
+            </p>
+        </div>
+
+    {{/each}}
+</div>

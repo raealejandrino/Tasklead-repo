@@ -25,5 +25,7 @@ module.exports = {
 
     format_department_tag: name => {
         return name.replace(/\s+/g, '');
-    }
+    },
+
+
 }
