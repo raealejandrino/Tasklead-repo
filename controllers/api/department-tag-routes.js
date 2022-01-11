@@ -5,8 +5,8 @@ router.get('/', (req, res) => {
     DepartmentTag.findAll({
         attributes: [
             'id',
-            'department_tag_name',
-            'project_id'
+            'name',
+            
         ]
     })
     .then(dbDTagData => res.json(dbDTagData))
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         },
         attributes: [
             'id',
-            'department_tag_name',
+            'name',
             'project_id'
         ]
 
@@ -43,7 +43,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     DepartmentTag.create({
-        department_tag_name: req.body.department_tag_name
+        name: req.body.name
     })
     .then(dbDTagData => res.json(dbDTagData))
     .catch(err => {

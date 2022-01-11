@@ -11,17 +11,11 @@ DepartmentTag.init(
             primaryKey: true,
             autoIncrement: true
         },
-        department_tag_name: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        project_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'project',
-                key: 'id'
-            }
-        }
+        
     },
     {
         sequelize,

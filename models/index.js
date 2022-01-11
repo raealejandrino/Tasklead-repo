@@ -11,10 +11,34 @@ User.hasMany(Project, {
     onDelete: 'CASCADE'
 });
 
+// User.belongsTo(Project, {
+//     foreignKey: 'project_id',
+//     onDelete: 'CASCADE'
+// });
+
+
+// Project.belongsToMany(User, {
+//     through: Project,
+//     as: 'user',
+//     foreignKey: 'project_id',
+//     onDelete:'CASCADE'
+// });
+
+Project.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+
 User.hasMany(Task, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
 });
+
+// User.belongsTo(Task, {
+//     foreignKey:'task_id',
+//     onDelete: 'CASCADE'
+// });
 
 User.hasMany(Comment, {
     foreignKey: 'user_id',
@@ -31,12 +55,15 @@ Comment.belongsTo(Task, {
     onDelete: 'CASCADE'
 });
 
-Task.belongsToMany(User, {
-    through: Task,
-    as: 'users',
-    foreignKey: 'task_id',
+Task.belongsTo(User, {
+    foreignKey: 'user_id',
     onDelete: 'CASCADE'
 });
+
+// Task.hasMany(User, {
+//     foreignKey: 'task_id',
+//     onDelete: 'CASCADE'
+// });
 
 Project.hasMany(Task, {
     foreignKey: 'project_id',
@@ -48,12 +75,6 @@ Task.belongsTo(Project, {
     onDelete: 'CASCADE'
 });
 
-Project.belongsToMany(User, {
-    through: Project,
-    as: 'user',
-    foreignKey: 'project_id',
-    onDelete:'CASCADE'
-});
 
 Project.hasMany(Pipeline, {
     foreignKey: 'project_id',
@@ -77,10 +98,23 @@ Task.belongsTo(Pipeline, {
     onDelete: 'CASCADE'
 });
 
-Project.hasMany(DepartmentTag, {
-    foreignKey: 'project_id',
+
+
+
+DepartmentTag.hasMany(Project, {
+    foreignKey: 'department_tag_id',
     onDelete: 'CASCADE'
 });
+
+Project.belongsTo(DepartmentTag, {
+    foreignKey: 'department_tag_id',
+    onDelete: 'CASCADE'
+});
+
+
+
+
+
 
 Task.hasMany(TaskTag, {
     foreignKey: 'task_id',
@@ -92,10 +126,7 @@ Task.hasMany(Comment, {
     onDelete: 'CASCADE'
 });
 
-DepartmentTag.belongsTo(Project, {
-    foreignKey: 'project_id',
-    onDelete: 'CASCADE'
-});
+
 
 TaskTag.belongsTo(Task, {
     foreignKey: 'task_id',

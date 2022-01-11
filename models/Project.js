@@ -31,7 +31,19 @@ Project.init(
           model: 'user',
           key: 'id'
          }
+        },
+      department_tag_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'department_tag',
+          key: 'id'
         }
+      }
+
+
+      
+        // add project desc
     },
       {
         sequelize,
