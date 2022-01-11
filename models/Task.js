@@ -36,6 +36,14 @@ Task.init(
         model: 'project',
         key: 'id'
       }
+    },
+    task_tag_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'task_tag',
+        key: 'id'
+      }
     }
 },
 {

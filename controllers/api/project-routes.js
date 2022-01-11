@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Project, User, Task, DepartmentTag } = require('../../models');
+const { Project, User, Task, DepartmentTag, ProContributor } = require('../../models');
 const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection');
 
@@ -31,6 +31,16 @@ router.get('/', (req, res) => {
           model: DepartmentTag,
           attributes: ['name']
           
+        },
+        {
+          model: ProContributor,
+          attributes: {exclude: 'id user_id project_id'},
+          include: [
+            {
+              model: User,
+              attributes: ['username']
+            }
+          ]
         }
       ]
     })

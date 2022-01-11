@@ -5,6 +5,8 @@ const Task = require('./Task');
 const Comment = require('./Comment');
 const DepartmentTag = require('./DepartmentTag');
 const TaskTag = require('./TaskTag');
+const ProContributor = require('./ProjectContributor');
+const TaskContributor = require('./TaskContributor');
 
 User.hasMany(Project, {
     foreignKey: 'user_id',
@@ -112,14 +114,62 @@ Project.belongsTo(DepartmentTag, {
 });
 
 
+Project.hasMany(ProContributor, {
+    foreignKey: 'project_id',
+    onDelete: 'CASCADE'
+});
 
+ProContributor.belongsTo(Project, {
+    foreignKey: 'project_id',
+    onDelete: 'CASCADE'
+});
 
+User.hasMany(ProContributor, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
 
+ProContributor.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
 
-Task.hasMany(TaskTag, {
+Task.hasMany(TaskContributor, {
     foreignKey: 'task_id',
     onDelete: 'CASCADE'
 });
+
+TaskContributor.belongsTo(Task, {
+    foreignKey: 'task_id',
+    onDelete: 'CASCADE'
+});
+
+User.hasMany(TaskContributor, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+TaskContributor.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+
+TaskTag.hasMany(Task, {
+    foreignKey: 'task_tag_id',
+    onDelete: 'CASCADE'
+});
+
+Task.belongsTo(TaskTag, {
+    foreignKey: 'task_tag_id',
+    onDelete: 'CASCADE'
+});
+
+
+// Task.hasMany(TaskTag, {
+//     foreignKey: 'task_id',
+//     onDelete: 'CASCADE'
+// });
 
 Task.hasMany(Comment, {
     foreignKey: 'task_id',
@@ -128,13 +178,13 @@ Task.hasMany(Comment, {
 
 
 
-TaskTag.belongsTo(Task, {
-    foreignKey: 'task_id',
-    onDelete: 'CASCADE'
-});
+// TaskTag.belongsTo(Task, {
+//     foreignKey: 'task_id',
+//     onDelete: 'CASCADE'
+// });
 
 
 
 
-module.exports = { User, Comment, DepartmentTag, Pipeline, Project, Task, TaskTag };
+module.exports = { TaskContributor, ProContributor, User, Comment, DepartmentTag, Pipeline, Project, Task, TaskTag };
 

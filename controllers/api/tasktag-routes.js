@@ -27,8 +27,8 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
     if (req.session) {
         TaskTag.create({
-                task_tag_name: req.body.task_tag_name,
-                task_id: req.body.task_id,
+                name: req.body.name
+                
             })
             .then(dbTaskTagData => res.json(dbTaskTagData))
             .catch(err => {

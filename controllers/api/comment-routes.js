@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     Comment.findAll({
         attributes: [
             'id',
-            'title',
+            // 'title',
             'comment_text',
 
         ],
@@ -27,7 +27,6 @@ router.get('/', (req, res) => {
 router.post('/', withAuth, (req, res) => {
     if (req.session) {
         Comment.create({
-                title: req.body.title,
                 comment_text: req.body.comment_text,
                 task_id: req.body.task_id,
                 user_id: req.body.user_id,

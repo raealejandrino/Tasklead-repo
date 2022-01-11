@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Task, User, TaskTag, Comment } = require('../../models');
+const { Task, User, TaskTag, Comment, TaskContributor } = require('../../models');
 
 
 router.get('/', (req, res) => {
@@ -24,6 +24,19 @@ router.get('/', (req, res) => {
                 model: User,
                 attributes: ['username'],
                 as: 'user'
+            },
+            {
+                model: TaskTag,
+                attributes: ['name']
+            },
+            {
+                model: TaskContributor,
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }
+                ]
             }
         ]
     })
@@ -61,6 +74,10 @@ router.get('/:id', (req, res) => {
                 model: User,
                 attributes: ['username'],
                 as: 'users'
+            },
+            {
+                model: TaskTag,
+                attributes: ['name']
             }
         ]
     })
@@ -82,7 +99,8 @@ router.post('/', (req, res) => {
         title: req.body.title,
         task_text: req.body.task_text,
         user_id: req.body.user_id,
-        project_id: req.body.project_id
+        project_id: req.body.project_id,
+        task_tag_id: req.body.task_tag_id
     })
     .then(dbTaskData => res.json(dbTaskData))
       .catch(err => {
