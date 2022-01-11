@@ -1,5 +1,27 @@
-<article>
-    <div>
-        <a>{{title}}</a>
-    </div>
-</article>
+<div class="row align-items-center">
+    <h3>
+        {{title}}
+    </h3>
+    <span class="departmentTag" id="engineeringTag">
+        {{department_tag.name}}
+    </span>
+</div>
+<div class="row">
+    <h5>
+        Created by: {{user.username}} at {{format_date createdAt}}
+    </h5>
+</div>
+<div class="row">
+    <span>
+        Contributors {{contributor_count}}
+    </span>
+    <span>
+        Tasks {{task_count}}
+    </span>
+</div>
+<div class="row">
+    <p>
+    {{description}}
+
+    </p>
+</div>

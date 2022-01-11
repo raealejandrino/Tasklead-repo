@@ -11,8 +11,12 @@ router.get('/', (req, res) => {
         'title',
         'user_id',
         'department_tag_id',
+        'description',
+        'createdAt',
         // COUNTS???
         [sequelize.literal('(SELECT COUNT(*) FROM task AS tasks WHERE project_id = project.id)'), 'task_count']
+      ,
+      [sequelize.literal('(SELECT COUNT(*) FROM project_contributor AS project_contributors WHERE project_id = project.id)'), 'contributor_count']
       ],
       include: [
         {
