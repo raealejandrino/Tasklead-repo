@@ -1,51 +1,67 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Project, DepartmentTag, User, Task, TaskTag } = require('../models');
+const { Project, DepartmentTag, User, Task, TaskTag, ProContributor } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, (req, res) => {
-
+router.get('/', (req, res) => {
     Project.findAll({
         attributes: [
             'id',
             'title',
-            'created_at'
+            'user_id',
+            'department_tag_id',
+            // COUNTS???
+            [sequelize.literal('(SELECT COUNT(*) FROM task AS tasks WHERE project_id = project.id)'), 'task_count']
         ],
         include: [
             {
-                model: DepartmentTag,
-                attributes: ['id', 'department_tag_name', 'project_id']
+                model: User,
+                attributes: ['username'],
+                // created by
+                as: 'user'
             },
             {
                 model: Task,
-                attributes: ['id', 'project_id']
+                // attributes: [sequelize.literal('(SELECT COUNT(*) FROM task)'), 'task_count']
+
+
             },
             {
-                model: User,
-                attributes: ['username'],
-                as: 'user'
+                model: DepartmentTag,
+                attributes: ['name']
+
+            },
+            {
+                model: ProContributor,
+                attributes: { exclude: 'id user_id project_id' },
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }
+                ]
             }
         ]
     })
-    .then(dbProjectData => {
+        .then(dbProjectData => {
 
-        // const projects = dbProjectData.map(project => project.get({ plain: true }));
+            const projects = dbProjectData.map(project => project.get({ plain: true }));
 
-        // res.render('homepage', { projects });
+            res.render('homepage', { projects, layout: false });
 
-        res.json(dbProjectData);
+            // res.json(dbProjectData);
 
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.get('/new', withAuth, (req, res) => {
 
     res.render('new-project');
-    
+
 });
 
 module.exports = router;

@@ -22,7 +22,8 @@
 {
     "title": "Project Title",
     "user_id": 1,
-    "department_tag_id": 1
+    "department_tag_id": 1,
+    "description": "Example Description"
 }
 
 // TASK

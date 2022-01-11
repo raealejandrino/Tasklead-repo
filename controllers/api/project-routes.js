@@ -102,7 +102,8 @@ router.post('/',withAuth, (req, res) => {
       title: req.body.title,
       // user_id: req.session.user_id
       user_id: req.body.user_id,
-      department_tag_id: req.body.department_tag_id
+      department_tag_id: req.body.department_tag_id,
+      description: req.body.description
     })
     .then(dbProjectData => res.json(dbProjectData))
     .catch(err => {

@@ -17,14 +17,10 @@ Project.init(
          type: DataTypes.STRING,
          allowNull: false
         },
-
-      //content or URL
-     // content: {
-       // type: DataTypes.TEXT,
-       // allowNull: false
-       // }
-     // },
-
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       user_id: {
          type: DataTypes.INTEGER,
          references: {
