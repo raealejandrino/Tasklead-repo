@@ -86,7 +86,7 @@ router.put('/:id',withAuth, (req, res) => {
 });
 
 
-// delete posts
+// delete project
 router.delete('/:id',withAuth, (req, res) => {
     Project.destroy({
       where: {

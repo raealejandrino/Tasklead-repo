@@ -13,7 +13,7 @@ User.hasMany(Project, {
 
 User.hasMany(Task, {
     foreignKey: 'user_id',
-    onDelete: 'CASCADE'
+   onDelete: 'CASCADE'
 });
 
 User.hasMany(Comment, {
