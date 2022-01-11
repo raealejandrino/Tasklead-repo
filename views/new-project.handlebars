@@ -12,24 +12,34 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+     <div class="container">
 
-        <div class="row my-5 justify-content-between align-items-center border-bottom pb-3">
+        <div class="row my-5 mx-auto w-75  align-items-center border-bottom pb-3">
             <h1>
-                Current Projects
-            </h1>
-            <a href="/dashboard/new/" target="_blank" class="btn btn-success btn-sm h-25">
                 New Project
-            </a>
+            </h1>
+            
+        </div>
+
+        <div class="row d-flex flex-column mx-auto w-75 pl-5">
+
+            
+            <div class="projectForm">
+                <div class="mb-3">
+                    <label for="titleInputForm" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="titleInputForm" placeholder="Your awesome project title!">
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionInputForm" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionInputForm" rows="3"></textarea>
+                </div>
+            </div>
+
+            
         </div>
 
 
-        {{#each projects as |project|}}
-        <div class="row projectRow d-flex flex-column mx-auto">
-            {{> project-main-info project}}
-        </div>
-        {{/each}}
-    
+        
     </div>
 </body>
 </html>
