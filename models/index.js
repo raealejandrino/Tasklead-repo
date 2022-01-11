@@ -11,18 +11,18 @@ User.hasMany(Project, {
     onDelete: 'CASCADE'
 });
 
-// User.belongsTo(Project, {
-//     foreignKey: 'project_id',
-//     onDelete: 'CASCADE'
-// });
+ User.belongsTo(Project, {
+    foreignKey: 'project_id',
+         onDelete: 'CASCADE'
+ });
 
 
-// Project.belongsToMany(User, {
-//     through: Project,
-//     as: 'user',
-//     foreignKey: 'project_id',
-//     onDelete:'CASCADE'
-// });
+ Project.belongsToMany(User, {
+     through: Project,
+     as: 'user',
+     foreignKey: 'project_id',
+    onDelete:'CASCADE'
+ });
 
 Project.belongsTo(User, {
     foreignKey: 'user_id',
@@ -35,10 +35,10 @@ User.hasMany(Task, {
    onDelete: 'CASCADE'
 });
 
-// User.belongsTo(Task, {
-//     foreignKey:'task_id',
-//     onDelete: 'CASCADE'
-// });
+ User.belongsTo(Task, {
+    foreignKey:'task_id',
+     onDelete: 'CASCADE'
+ });
 
 User.hasMany(Comment, {
     foreignKey: 'user_id',
@@ -60,10 +60,10 @@ Task.belongsTo(User, {
     onDelete: 'CASCADE'
 });
 
-// Task.hasMany(User, {
-//     foreignKey: 'task_id',
-//     onDelete: 'CASCADE'
-// });
+ Task.hasMany(User, {
+     foreignKey: 'task_id',
+     onDelete: 'CASCADE'
+ });
 
 Project.hasMany(Task, {
     foreignKey: 'project_id',

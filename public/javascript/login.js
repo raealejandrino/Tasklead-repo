@@ -17,12 +17,16 @@ async function loginFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/dashboard');
+        
+        document.location.replace('/');
+        console.log('login login ----------------------------');
       } else {
         alert(response.statusText);
       }
     }
   }
+
+  document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 
   // sign up logic 
   async function signupFormHandler(event) {
@@ -45,14 +49,14 @@ async function loginFormHandler(event) {
   
       if (response.ok) {
         console.log('good job' );
-        document.location.replace('/dashboard');
+        document.location.replace('/');
       } else {
         alert(response.statusText);
       }
     }
   }
   
-  document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+ 
   
   document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
   
