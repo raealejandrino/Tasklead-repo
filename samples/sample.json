@@ -1,0 +1,29 @@
+// USER
+{
+    "username": "user1",
+    "email": "user1@email.com",
+    "password": "1234"
+}
+
+// PROJECT
+
+{
+    "title": "Project Title",
+    "user_id": 1
+}
+
+// TASK
+
+{
+    "title": "Task Title",
+    "task_text": "Task Text",
+    "user_id": 1,
+    "project_id": 1
+}
+
+// DEPARTMENTS
+
+{
+    "name": "Engineering",
+    "project_id": 1
+}

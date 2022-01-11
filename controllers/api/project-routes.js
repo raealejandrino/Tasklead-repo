@@ -1,15 +1,38 @@
 const router = require('express').Router();
-const { Project, User } = require('../../models');
+const { Project, User, Task, DepartmentTag } = require('../../models');
 const withAuth = require('../../utils/auth');
+const sequelize = require('../../config/connection');
 
 // getting all projects
 router.get('/', (req, res) => {
     Project.findAll({
       attributes: [
         'id',
-        'title'  
+        'title',
+        'user_id',
+        'department_tag_id',
+        // COUNTS???
+        [sequelize.literal('(SELECT COUNT(*) FROM task AS tasks WHERE project_id = project.id)'), 'task_count']
+      ],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+          // created by
+          as: 'user'
+        },
+        {
+          model: Task,
+          // attributes: [sequelize.literal('(SELECT COUNT(*) FROM task)'), 'task_count']
+    
+        
+        },
+        {
+          model: DepartmentTag,
+          attributes: ['name']
+          
+        }
       ]
-      
     })
     .then(dbProjectData => res.json(dbProjectData))
     .catch(err => {
@@ -26,12 +49,27 @@ router.get('/:id', (req, res) => {
       where: {
         id: req.params.id
       },
-      attributes: ['id',  'title' ],
+      attributes: ['id',  'title', 'department_tag_id',
+      
+      [sequelize.literal('(SELECT COUNT(*) FROM task WHERE project_id = project.id)'), 'task_count']
+      ],
 
       include: [
         {
           model: User,
-          attributes: ['username']
+          attributes: ['username'],
+          as: 'user'
+        },
+        {
+          model: Task,
+         
+    
+        
+        },
+        {
+          model: DepartmentTag,
+          attributes: ['name']
+          
         }
       ]
     })
@@ -52,7 +90,9 @@ router.get('/:id', (req, res) => {
 router.post('/',withAuth, (req, res) => {
     Project.create({
       title: req.body.title,
-      user_id: req.session.user_id
+      // user_id: req.session.user_id
+      user_id: req.body.user_id,
+      department_tag_id: req.body.department_tag_id
     })
     .then(dbProjectData => res.json(dbProjectData))
     .catch(err => {
