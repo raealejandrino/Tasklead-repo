@@ -22,4 +22,10 @@ module.exports = {
     //         .split('/')[0]
     //         .split('?')[0];
     // }
+
+    format_department_tag: name => {
+        return name.replace(/\s+/g, '');
+    },
+
+
 }

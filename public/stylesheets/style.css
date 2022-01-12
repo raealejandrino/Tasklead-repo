@@ -5,6 +5,17 @@
     padding: 1px 10px;
 } */
 
+/* .dropdown {
+    position: relative;
+} */
+
+
+.loginBody {
+    background-image: url("/images/background.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 .projectRow{
     width: 90%;
 }
@@ -17,10 +28,16 @@
     padding: 1px 6px;
 }
 
-#engineeringTag {
+#EngineeringTag {
     border-color: rgb(194, 126, 0);
     background-color: rgb(150, 97, 0);
-    color: orange;
+    color: rgb(255, 196, 87);
+}
+
+#HumanResourcesTag {
+    border-color: rgb(123, 0, 194);
+    background-color: rgb(95, 0, 150);
+    color: rgb(224, 224, 245);
 }
 
 .projectCounts {
@@ -36,4 +53,9 @@
 .projectForm {
     width: 500px;
     
+}
+
+
+.mainLoginRow {
+    margin-top: 200px;
 }

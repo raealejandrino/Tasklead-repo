@@ -1,11 +1,18 @@
 <div class="row align-items-center justify-content-between">
     <div class="d-flex">
+        <a href="/projects/{{id}}">
         <h3>
         {{title}}
         </h3>
-        <span class="departmentTag" id="engineeringTag">
+
+        </a>
+        {{#if department_tag.name}}
+        <span class="departmentTag" 
+        
+        id="{{format_department_tag department_tag.name}}Tag">
             {{department_tag.name}}
         </span>
+        {{/if}}
     </div>
     <div class="d-flex flex-column projectCounts">
         <span>
