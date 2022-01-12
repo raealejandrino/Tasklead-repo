@@ -246,6 +246,7 @@ router.get('/:id/tasks/:task_id', (req, res) => {
         ]
     })
     .then(dbProjectTaskData => {
+        
         // const tasks =  dbProjectTasksData.map(task => task.get({ plain: true }));
         const project = dbProjectTaskData.get({ plain: true });
 
@@ -259,9 +260,56 @@ router.get('/:id/tasks/:task_id', (req, res) => {
 
 
 router.get('/:id/new-task', withAuth, (req, res) => {
+    Project.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'title',
+            'user_id',
+            'department_tag_id',
+            'description',
+            'createdAt',
+            // COUNTS???
+            [sequelize.literal('(SELECT COUNT(*) FROM task AS tasks WHERE project_id = project.id)'), 'task_count']
+            ,
+            [sequelize.literal('(SELECT COUNT(*) FROM project_contributor AS project_contributors WHERE project_id = project.id)'), 'contributor_count']
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['username'],
+                // created by
+                as: 'user'
+            },
+            {
+                model: DepartmentTag,
+                attributes: ['name']
 
-    res.render('new-task');
+            },
+            {
+                model: ProContributor,
+                attributes: { exclude: 'id user_id project_id' },
+                include: [
+                    {
+                        model: User,
+                        attributes: ['username']
+                    }
+                ]
+            },
+            
+        ]
+    })
+    .then(dbProjectData => {
+        const project = dbProjectData.get({ plain: true });
 
+        res.render('new-task', { project, layout: 'single-project-main'});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 

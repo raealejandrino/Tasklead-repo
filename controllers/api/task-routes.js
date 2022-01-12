@@ -98,7 +98,7 @@ router.post('/', (req, res) => {
     Task.create({
         title: req.body.title,
         task_text: req.body.task_text,
-        user_id: req.body.user_id,
+        user_id: 1,
         project_id: req.body.project_id,
         task_tag_id: req.body.task_tag_id
     })

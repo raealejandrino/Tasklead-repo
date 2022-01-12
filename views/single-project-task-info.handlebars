@@ -1,16 +1,83 @@
 <div class="container">
     {{#each project.tasks as |task|}}
-        <div class="row">
-           <h3>
-               {{task.title}}
-           </h3>
-        </div>
+    <div class="row">
+        <h3>
+            {{task.title}}
+        </h3>
+    </div>
 
-        <div class="row">
-            <p>
-                {{task.task_text}}
-            </p>
-        </div>
+    <div class="row">
+        <p>
+            {{task.task_text}}
+
+
+        </p>
+    </div>
 
     {{/each}}
+
+    <div class="mt-5 mb-3 w-75">
+        <form class="commentForm">
+
+            <label for="exampleFormControlTextarea1" class="form-label">New Comment</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="comment-body" rows="3"></textarea>
+
+            <div class="d-flex justify-content-end m-2">
+                <button class="btn btn-success btn-sm" type="submit">
+                    Submit
+                </button>
+
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div class="row mt-2 ml-4 d-flex flex-column">
+        {{#each project.tasks as |task|}}
+
+        {{#each task.comments as |comment|}}
+
+        {{> comment-list-info comment}}
+
+        {{/each}}
+        {{/each}}
+    </div>
 </div>
+
+
+<script>
+    async function commentFormHandler(event) {
+        event.preventDefault();
+
+        const comment_text = document.querySelector('textarea[name="comment-body"]').value.trim();
+
+        const task_id = window.location.toString().split('/')[
+            window.location.toString().split('/').length - 1
+        ][0];
+
+
+
+        if (comment_text) {
+            const response = await fetch('/api/comments', {
+                method: 'POST',
+                body: JSON.stringify({
+                    task_id,
+                    comment_text
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert(response.statusText);
+            }
+        }
+    }
+
+    document.querySelector('.commentForm').addEventListener('submit', commentFormHandler);
+</script>

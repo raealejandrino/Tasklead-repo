@@ -1,0 +1,95 @@
+<div class="container">
+
+    <div class="row my-5 mx-auto w-75  align-items-center border-bottom pb-3">
+        <h2>
+            New Task
+        </h2>
+
+    </div>
+
+    <div class="row d-flex flex-column mx-auto w-75 pl-5">
+        <form class="newTaskForm">
+
+            <div class="taskForm">
+                <div class="mb-3">
+                    <label for="titleInputForm" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="titleInputForm" name="task-title"
+                        placeholder="Task Title">
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionInputForm" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionInputForm" rows="3" name="task-desc"></textarea>
+                </div>
+            </div>
+
+            <div class="row ml-1">
+                <div class="dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Tags
+                    </button>
+                    {{!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {{#each project}}
+
+
+                        {{/each}}
+                    </ul> --}}
+                </div>
+            </div>
+
+            <div class="row mt-5 mr-3 justify-content-end">
+                <button type="submit" class="btn btn-success btn-sm submitBtn">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<!-- BOOTSTRAP AND LOCAL JAVASCRIPT LINKS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    async function newTaskHandler(event) {
+        event.preventDefault();
+
+        
+
+        const title = document.querySelector('input[name="task-title"]').value;
+        const task_text = document.querySelector('textarea[name="task-desc"]').value;
+        
+
+        const project_id = window.location.toString().split('/')[4];
+
+        
+        const response = await fetch(`/api/tasks`, {
+            method: 'POST',
+            body: JSON.stringify({
+                title,
+                task_text,
+                project_id
+                
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            document.location.replace(window.location.toString().substring(0, window.location.toString().lastIndexOf('/')) + '/tasks');
+        } else {
+            alert(response.statusText);
+        }
+    };
+
+    
+
+
+
+    document.querySelector('.newTaskForm').addEventListener('submit', newTaskHandler);
+</script>
