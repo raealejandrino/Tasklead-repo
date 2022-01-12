@@ -1,0 +1,70 @@
+// USER
+{
+    "username": "user1",
+    "email": "user1@email.com",
+    "password": "1234"
+}
+
+{
+    "username": "user4",
+    "email": "user4@email.com",
+    "password": "1234"
+}
+
+{
+    "username": "user22",
+    "email": "user22@email.com",
+    "password": "1234"
+}
+
+// PROJECT
+
+{
+    "title": "Project Title",
+    "user_id": 1,
+    "department_tag_id": 1,
+    "description": "Example Description"
+}
+
+// TASK
+
+{
+    "title": "Task Title",
+    "task_text": "Task Text",
+    "user_id": 1,
+    "project_id": 1
+}
+
+// COMMENT
+
+{
+    "comment_text": "Example comment text",
+    "user_id": 1,
+    "task_id": 1
+}
+
+// DEPARTMENTS
+
+{
+    "name": "Engineering"
+}
+
+// TASK TAGS
+
+{
+    "name" : "bug fix"
+}
+
+// PROJECT CONTRIBUTOR
+
+{
+    "user_id": 2,
+    "project_id": 1
+}
+
+// TASK CONTRIBUTOR
+
+{
+    "user_id": 2,
+    "task_id": 1
+}

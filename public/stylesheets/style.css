@@ -1,0 +1,61 @@
+
+
+/* .newProjectBtn {
+    border-radius: 20px;
+    padding: 1px 10px;
+} */
+
+/* .dropdown {
+    position: relative;
+} */
+
+
+.loginBody {
+    background-image: url("/images/background.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.projectRow{
+    width: 90%;
+}
+
+.departmentTag {
+    font-size: 11px;
+    border: solid 2px black;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 1px 6px;
+}
+
+#EngineeringTag {
+    border-color: rgb(194, 126, 0);
+    background-color: rgb(150, 97, 0);
+    color: rgb(255, 196, 87);
+}
+
+#HumanResourcesTag {
+    border-color: rgb(123, 0, 194);
+    background-color: rgb(95, 0, 150);
+    color: rgb(224, 224, 245);
+}
+
+.projectCounts {
+    font-size: 15px;
+    text-align: right;
+}
+
+.creationInfo {
+    color: grey;
+}
+
+
+.projectForm {
+    width: 500px;
+    
+}
+
+
+.mainLoginRow {
+    margin-top: 200px;
+}

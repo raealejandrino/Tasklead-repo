@@ -1,0 +1,40 @@
+<div class="row align-items-center justify-content-between">
+    <div class="d-flex">
+        <a href="/projects/{{id}}">
+        <h3>
+        {{title}}
+        </h3>
+
+        </a>
+        {{#if department_tag.name}}
+        <span class="departmentTag" 
+        
+        id="{{format_department_tag department_tag.name}}Tag">
+            {{department_tag.name}}
+        </span>
+        {{/if}}
+    </div>
+    <div class="d-flex flex-column projectCounts">
+        <span>
+            Contributors {{contributor_count}}
+        </span>
+        <span>
+            Tasks {{task_count}}
+        </span>
+    </div>
+</div>
+<div class="row creationInfo">
+    <h6>
+        Created by: <a href="#">{{user.username}}</a> on {{format_date createdAt}}
+    </h6>
+</div>
+<div class="row">
+    
+    
+</div>
+<div class="row">
+    <p>
+    {{description}}
+
+    </p>
+</div>

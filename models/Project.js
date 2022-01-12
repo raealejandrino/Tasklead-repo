@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Project modole
+// Project model
 class Project extends Model {}
 
 Project.init(
@@ -17,21 +17,29 @@ Project.init(
          type: DataTypes.STRING,
          allowNull: false
         },
-
-      //content or URL
-     // content: {
-       // type: DataTypes.TEXT,
-       // allowNull: false
-       // }
-     // },
-
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       user_id: {
          type: DataTypes.INTEGER,
          references: {
           model: 'user',
           key: 'id'
          }
+        },
+      department_tag_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'department_tag',
+          key: 'id'
         }
+      }
+
+
+      
+        // add project desc
     },
       {
         sequelize,
