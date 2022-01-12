@@ -3,16 +3,21 @@ const sequelize = require('../config/connection');
 const { Project, DepartmentTag, User, Task, TaskTag, ProContributor } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Project.findAll({
         attributes: [
             'id',
             'title',
             'user_id',
             'department_tag_id',
+            'description',
+            'createdAt',
             // COUNTS???
             [sequelize.literal('(SELECT COUNT(*) FROM task AS tasks WHERE project_id = project.id)'), 'task_count']
+            ,
+            [sequelize.literal('(SELECT COUNT(*) FROM project_contributor AS project_contributors WHERE project_id = project.id)'), 'contributor_count']
         ],
+
         include: [
             {
                 model: User,
@@ -59,9 +64,19 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', withAuth, (req, res) => {
+    DepartmentTag.findAll({
+        attributes: [
+            'id',
+            'name',
 
-    res.render('new-project');
+        ]
+    })
+        .then(dbData => {
 
+            const data = dbData.map(data => data.get({ plain: true }));
+
+            res.render('new-project', { data, layout: false });
+        })
 });
 
 module.exports = router;
