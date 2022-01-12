@@ -218,7 +218,7 @@ router.post('/', withAuth, (req, res) => {
   Project.create({
     title: req.body.title,
     // user_id: req.session.user_id
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
     department_tag_id: req.body.department_tag_id,
     description: req.body.description
   })

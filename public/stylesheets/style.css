@@ -9,6 +9,13 @@
     position: relative;
 } */
 
+
+.loginBody {
+    background-image: url("/images/background.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 .projectRow{
     width: 90%;
 }
@@ -46,4 +53,9 @@
 .projectForm {
     width: 500px;
     
+}
+
+
+.mainLoginRow {
+    margin-top: 200px;
 }

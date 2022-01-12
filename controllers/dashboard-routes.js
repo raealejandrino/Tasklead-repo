@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Project, DepartmentTag, User, Task, TaskTag, ProContributor } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Project.findAll({
         attributes: [
             'id',
