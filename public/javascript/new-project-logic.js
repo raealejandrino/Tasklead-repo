@@ -48,7 +48,7 @@ function dropdownHandler(event) {
 
     btnPlaceholder.innerHTML = selectedDepartment;
     
-}
+};
 
 const dropdownItems = document.getElementsByClassName('dropdown-item');
 
