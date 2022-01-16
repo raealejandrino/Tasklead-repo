@@ -16,6 +16,16 @@
     background-position: center;
     background-attachment: fixed;
 }
+
+.alertLogin {
+    width: 500px;
+}
+
+.loginCard {
+    width: 450px;
+}
+
+
 .projectRow{
     width: 90%;
 }

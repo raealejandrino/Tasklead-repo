@@ -1,3 +1,15 @@
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+alertPlaceholder.className = "d-flex justify-content-center";
+
+const alertFunction = () => {
+  const wrapper = document.createElement("div");
+
+  wrapper.className = "w-100";
+
+  alertPlaceholder.innerHTML = "<div class='alert alert-danger alert-dismissible alertLogin' role='alert'>Uh oh, something went wrong! Please try again.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>"
+
+};
+
 async function signupFormHandler(event) {
     event.preventDefault();
 
@@ -17,11 +29,17 @@ async function signupFormHandler(event) {
       });
 
       // check the response status
+     
+
       if (response.ok) {
             document.location.replace('/dashboard');
       } else {
-          alert(response.statusText);
+         
+        alertFunction();
+          
       }
+    } else {
+      alertFunction();
     }
 };
   
@@ -46,7 +64,11 @@ async function loginFormHandler(event) {
     if (response.ok) {
         document.location.replace('/dashboard');
       } else {
-        alert(response.statusText);
+
+
+        alertFunction();
+
+
       }
     }
 };
