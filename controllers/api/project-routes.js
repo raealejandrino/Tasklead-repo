@@ -231,10 +231,7 @@ router.post('/', withAuth, (req, res) => {
 
 // update Project title
 router.put('/:id', withAuth, (req, res) => {
-  Project.update(
-    {
-      description: req.body.description
-    },
+  Project.update(req.body,
     {
       where: {
         id: req.params.id
