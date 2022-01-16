@@ -21,6 +21,10 @@ function editDescHandler(event) {
     const inputContainerEl = document.createElement("textarea");
     inputContainerEl.className = "form-control edit-input";
     inputContainerEl.setAttribute("rows", "6");
+
+
+    const innerDesc = document.querySelector('.descPTag').innerHTML.trim();
+    inputContainerEl.innerHTML = innerDesc;
     
 
     formEl.appendChild(inputContainerEl);
@@ -74,10 +78,37 @@ function cancelEditHandler(event) {
     
 };
 
-function confirmEditHandler(event) {
+async function confirmEditHandler(event) {
     event.preventDefault();
 
     console.log('test');
+
+    const project_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
+
+    const projectDesc = document.querySelector('.edit-input').value.trim();
+
+    const response = await fetch(`/api/projects/${project_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            projectDesc
+        }),
+        headers: {
+            'Content-type': 'application/json'
+        }
+    })
+
+    if(response.ok) {
+        document.querySelector('.edit-btn-container').remove();
+        document.querySelector('.edit-input').remove();
+
+        
+        currentDesc.innerHTML = projectDesc
+        currentDesc.setAttribute("style", "display: block");
+    } else {
+        alert(response.statusText);
+    }
 
 };
 

@@ -233,7 +233,7 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
   Project.update(
     {
-      title: req.body.title,
+      description: req.body.description
     },
     {
       where: {
@@ -242,6 +242,7 @@ router.put('/:id', withAuth, (req, res) => {
     })
     .then(dbProjectData => {
       if (!dbProjectData) {
+        
         res.status(404).json({ message: 'No Project found with this id' });
         return;
       }
