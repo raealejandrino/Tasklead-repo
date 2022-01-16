@@ -92,7 +92,7 @@ async function confirmEditHandler(event) {
     const response = await fetch(`/api/projects/${project_id}`, {
         method: 'PUT',
         body: JSON.stringify({
-            projectDesc
+            description: projectDesc
         }),
         headers: {
             'Content-type': 'application/json'
