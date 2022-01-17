@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/raealejandrino/full-e-commerce-web" rel="noopener">
+  <a href="https://github.com/raealejandrino/Tasklead-repo" rel="noopener">
  <img src="./public/images/taskleadlogopng.png" alt="Project logo"></a>
 
 </p>
